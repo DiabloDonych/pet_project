@@ -1,0 +1,73 @@
+{% extends '../base.html' %}
+
+{% block title %}{{ anime.animeName }}{% endblock %}
+
+{% block content %}
+<div class="container custom-margin-filter mb-3">
+    <div class="anime-detail">
+        <div class="row">
+            <div class="col-md-4">
+                <div style="width: 100%;">
+                    <img src="{{ anime.poster }}" alt="" class="anime-poster" style="width: 100%;">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h1 class="anime-title">{{ anime.animeName }}</h1>
+                <p class="anime-description"><i>{{ anime.description }}</i></p>
+                <p>Year: <b>{{ anime.year }}</b> | Genres: <b>{{ anime.genre.genreName }}</b> | Produced by <b>{{ anime.producer }}</b></p>
+                <p>Rating: <b>{{ anime.rating }}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="anime-video">
+        <iframe width="100%" height="400" src="{{ anime.animeLink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <h2>Comments</h2>
+    <div class="comments-section mb-4">
+        {% for comment in comments %}
+            <div class="comment mb-3 d-flex" id="comment-{{ comment.id }}">
+                <div class="comment-avatar">
+                    <img src="{{ comment.user.profile.avatar.url }}" alt="Avatar" class="rounded-circle" style="width: 40px; height: 40px;">
+                </div>
+                <div class="comment-body ms-3 position-relative">
+                    <p><strong>{{ comment.user.username }}</strong> <small>{{ comment.created_at|date:"d M Y H:i" }}</small></p>
+                    <p class="comment-text" data-comment-id="{{ comment.id }}">{{ comment.text }}</p>
+                    <div class="edit-form" id="edit-form-{{ comment.id }}" style="display: none;">
+                        <textarea class="form-control" rows="3">{{ comment.text }}</textarea>
+                        <button class="btn btn-success save-edit" data-comment-id="{{ comment.id }}">Save</button>
+                        <button class="btn btn-secondary cancel-edit" data-comment-id="{{ comment.id }}">Cancel</button>
+                    </div>
+                    {% if comment.user == request.user %}
+                        <div class="comment-actions position-absolute top-0 end-0">
+                            <button class="edit-comment text-warning me-2" data-comment-id="{{ comment.id }}">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="delete-comment text-danger" data-comment-id="{{ comment.id }}">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'animeDetail' pk=anime.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+    {% else %}
+        <p>You must be <a href="{% url 'loginPage' %}">logged in</a> to add a comment.</p>
+    {% endif %}
+</div>
+{% endblock %}

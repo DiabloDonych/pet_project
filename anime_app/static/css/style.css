@@ -1,0 +1,393 @@
+body {
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+}
+
+.navbar, .footer, .card {
+    background-color: #252424;
+    color: #e5e5e5;
+}
+
+a, a:hover, a:focus {
+    color: #66c0f4;
+}
+
+.navbar-nav .nav-item .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #252424;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #e5e5e5;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item.text-danger {
+    color: #dc3545;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item.text-danger:hover {
+    background-color: #333;
+    color: #dc3545;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    display: none;
+}
+
+.navbar-nav .nav-link img {
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.dropdown-menu .dropdown-item.logout {
+    color: red;
+}
+
+.profile-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #252424;
+    color: #e5e5e5;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container {
+    background-color: #2c2c2c; /* Match the background color of the cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff; /* Ensure text is visible on dark background */
+    margin-bottom: 20px;
+}
+
+.avatar-container img.avatar-lg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #fff; /* Optional: add a white border around the avatar */
+}
+
+.username {
+    font-size: 24px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.btn-primary, .btn-outline-secondary {
+    background-color: #4e4e4e; /* Match the button color on the cards */
+    color: #fff;
+    border: 1px solid #4e4e4e; /* Match the border color */
+}
+
+.btn-primary:hover, .btn-outline-secondary:hover {
+    background-color: #6c757d; /* Slightly lighter color on hover */
+    border: 1px solid #6c757d;
+}
+
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.avatar-lg {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.favorites-container {
+    margin-top: 30px;
+}
+
+.favorites-container .card {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+.favorites-container .card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.favorite-btn {
+    color: #ffd700 !important; /* Золотой цвет для звезды */
+}
+
+.favorite-btn .fa-star {
+    color: #ffd700 !important; /* Заполненная звезда золотого цвета */
+}
+
+.favorite-btn .fa-star-o {
+    color: #ffd700 !important; /* Контур звезды золотого цвета */
+}
+
+button, .btn {
+    background-color: #333;
+    color: #e5e5e5;
+    border: none;
+}
+
+.card {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+input, textarea {
+    background-color: #333;
+    color: #e5e5e5;
+    border: 1px solid #444;
+}
+
+#banner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgb(0, 0, 0)),
+        url('../Img/kimi-no-na-wa-makoto-shinkai-starry-night-comet-wallpaper-89c0584d016a0d0be617288fb071564d.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top; 
+    color: #e5e5e5;
+    font-weight: 100;
+}
+
+#banner h1 {
+    font-weight: 200;
+}
+
+#banner p {
+    text-align: justify;
+    width: 70%;
+}
+
+.adapt-dark {
+    background-color: #e0e0e0;
+}
+
+.anime-detail {
+    background-color: #252424;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.anime-poster {
+    border-radius: 8px;
+}
+
+.anime-title {
+    color: #e5e5e5;
+    margin-top: 20px;
+}
+
+.anime-description {
+    color: #e5e5e5;
+    font-style: italic;
+}
+
+.anime-info p {
+    color: #e5e5e5;
+}
+
+.anime-video {
+    background-color: #252424;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.search-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 5px rgba(41, 41, 41, 0.5) !important; /* Белое свечение */
+    /* Можно использовать другой цвет свечения, например, неоново-голубой */
+    /* box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.7); */
+}
+
+/* Стили для изображений */
+.card-img-top {
+    width: 100%;
+    height: 275px;
+    object-fit: cover;
+    aspect-ratio: 9 / 14; /* Соотношение сторон для вертикального изображения */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ограничение количества строк в заголовке */
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Количество строк, которые нужно показать */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-margin {
+    padding-top: 20px;
+    margin-bottom: 15px; /* Настройте значение по вашему усмотрению */
+}
+
+.custom-rounded {
+    border-radius: 15px; /* Настройте значение по вашему усмотрению */
+    overflow: hidden; /* Это необходимо, чтобы изображения внутри карусели тоже были скруглены */
+}
+.custom-rounded img {
+    border-radius: 15px; /* Настройте значение по вашему усмотрению */
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 23px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.329);
+}
+
+.filter-item {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-item label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-item input,
+.filter-item select {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e5e5e5;
+}
+
+#filter-btn {
+    padding: 11px 11px !important;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+#filter-btn:hover {
+    background-color: #66c0f4;
+}
+
+#results {
+    margin-top: 10px;
+}
+
+.custom-margin-filter {
+    padding-top: 65px;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    background-color: #252424;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.comment-avatar {
+    margin-right: 1rem;
+}
+
+.comment-body {
+    flex-grow: 1;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-form {
+    margin-top: 1rem;
+}
+
+textarea.form-control {
+    background-color: #333;
+    color: #e5e5e5;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+button.save-edit, button.cancel-edit {
+    margin-top: 0.5rem;
+}
+
+
+.island {
+    border-style: solid;
+    border-color: #555;
+    border-width: 1.5px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+@media (max-width: 767.98px) {
+    .col-md-2 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #banner, #banner p {
+        text-align: center;
+    }
+    #banner p {
+        width: 100%;
+    }
+}

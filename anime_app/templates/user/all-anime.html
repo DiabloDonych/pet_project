@@ -1,0 +1,84 @@
+{% extends '../base.html' %}
+
+{% block title %}All anime{% endblock %}
+
+{% block content %}
+<div class="container custom-margin-filter">
+    <h1>All Anime</h1>
+    <div class="filter-container">
+        <div class="filter-item">
+            <select id="genre" name="genre" form="filter-form">
+                <option value="">All Genres</option>
+                {% for genre in genres %}
+                <option value="{{ genre.slug }}" {% if request.GET.genre == genre.slug %}selected{% endif %}>{{ genre.genreName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-item">
+            <select id="year" name="year" form="filter-form">
+                <option value="">All Years</option>
+                {% for year in years %}
+                <option value="{{ year.yearValue }}" {% if request.GET.year == year.yearValue|stringformat:"s" %}selected{% endif %}>{{ year.yearValue }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-item">
+            <select id="format" name="format" form="filter-form">
+                <option value="">All Formats</option>
+                {% for format in formats %}
+                <option value="{{ format.slug }}" {% if request.GET.format == format.slug %}selected{% endif %}>{{ format.formatName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-item">
+            <select id="sort-rating" name="sort_rating" form="filter-form">
+                <option value="">Sort by Rating</option>
+                <option value="asc" {% if request.GET.sort_rating == 'asc' %}selected{% endif %}>Ascending</option>
+                <option value="desc" {% if request.GET.sort_rating == 'desc' %}selected{% endif %}>Descending</option>
+            </select>
+        </div>
+        <form id="filter-form" class="d-flex search-form" role="search" action="{% url 'allAnime' %}" method="get">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search" value="{{ query }}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<div id="results">
+    <div class="top-season">
+        <div class="container pt-5">
+            <div class="row">
+                {% if no_results %}
+                    <p>No anime found matching your search query.</p>
+                {% else %}
+                    {% for anime in animes %}
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                            <div class="card">
+                                <img src="{{ anime.poster }}" class="card-img-top" alt="{{ anime.animeName }}">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        {% if anime.animeName|length > 13 %}
+                                            {{ anime.animeName|slice:":13" }}...
+                                        {% else %}
+                                            {{ anime.animeName }}
+                                        {% endif %}
+                                    </h6>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{% url 'animeDetail' pk=anime.pk %}" class="btn btn-primary">Watch</a>
+                                        <form method="post" action="{% url 'toggle_favorite' anime.pk %}" class="favorite-form" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-secondary favorite-btn" data-anime-id="{{ anime.pk }}">
+                                                <i class="fa {% if anime in request.user.favorite_set.all %}fa-star{% else %}fa-star-o{% endif %}"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

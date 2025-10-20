@@ -1,0 +1,62 @@
+{% extends '../base.html' %}
+
+{% block title %}Top anime{% endblock %}
+
+{% block content %}
+     <div class="container custom-margin-filter">
+        <div class="in-trend">
+            <h1>In trend</h1>
+            <div class="owl-carousel owl-theme">
+                {% for m in animes %}
+              <div class="item">
+                 <div class="card">
+                   <img src="{{ m.poster }}" class="card-img-top" alt="{{ m.animeName }}">
+                      <div class="card-body">
+                       <h6 class="card-title">
+                           {% if m.animeName|length > 13 %}
+                                        {{ m.animeName|slice:":13" }}...
+                                    {% else %}
+                                        {{ m.animeName }}
+                                    {% endif %}
+                       </h6>
+                       <a href="{% url 'animeDetail' pk=m.pk %}" class="btn btn-dark">Watch</a>
+                     </div>
+                 </div>
+              </div>
+
+                {% endfor %}
+              <!-- Повторите блок .item для каждой карточки -->
+            </div>
+        </div>
+    </div>
+
+    <div class="top-season">
+        <div class="container mt-3 pt-2">
+            <h2>Best of the season</h2>
+            <div class="row">
+                {% for m in animes %}
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                        <div class="card">
+                            <img src="{{ m.poster }}" class="card-img-top" alt="{{ m.animeName }}">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    {% if m.animeName %}
+                                        {{ m.animeName|slice:":13" }}...
+                                    {% else %}
+                                        {{ m.animeName }}
+                                    {% endif %}
+                                </h6>
+                                <a href="{% url 'animeDetail' pk=m.pk %}" class="btn btn-dark">Watch</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                <!-- Повторите блок .col-6 col-md-4 col-lg-3 col-xl-2 для каждой карточки -->
+            </div>
+            <div class="text-center mb-5">
+                <a href="#" class="btn btn-dark">See all</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

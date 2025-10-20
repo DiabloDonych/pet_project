@@ -1,0 +1,52 @@
+{% extends '../base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container custom-margin-filter mt-2 mb-5">
+    <div class="profile-container text-center">
+        <div class="avatar-container mb-3">
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="avatar-lg">
+        </div>
+        <h2 class="username">{{ user.username }}</h2>
+        <form method="post" enctype="multipart/form-data" action="{% url 'change_avatar' %}">
+            {% csrf_token %}
+            <div class="container mb-3">
+                <label for="avatar" class="form-label">Change Avatar</label>
+                <input class="form-control" type="file" id="avatar" name="avatar">
+            </div>
+            <button type="submit" class="btn btn-primary">Change</button>
+        </form>
+    </div>
+
+<div class="container mb-5">
+    <h3>Your Favorites</h3>
+    <div class="row">
+        {% for favorite in favorites %}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                <div class="card">
+                    <img src="{{ favorite.anime.poster }}" class="card-img-top" alt="{{ favorite.anime.animeName }}">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            {% if favorite.anime.animeName|length > 13 %}
+                                {{ favorite.anime.animeName|slice:":13" }}...
+                            {% else %}
+                                {{ favorite.anime.animeName }}
+                            {% endif %}
+                        </h6>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'animeDetail' pk=favorite.anime.pk %}" class="btn btn-primary">Watch</a>
+                            <form method="post" action="{% url 'toggle_favorite' favorite.anime.pk %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-secondary favorite-btn" data-anime-id="{{ favorite.anime.pk }}">
+                                    <i class="fa fa-star"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

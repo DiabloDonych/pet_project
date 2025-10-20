@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static './css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <link rel="stylesheet" href="{% static './css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static './css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="navbar navbar-expand-lg fixed-top navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">AniPoisk</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'topAnime' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'allAnime' %}">Anime</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="rounded-circle" style="width: 30px; height: 30px;">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">Account</a></li>
+                                    <li>
+                                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                                            {% csrf_token %}
+                                        </form>
+                                        <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'signUp' %}">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'loginPage' %}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="banner">
+        <div class="container">
+            <h1>Welcome to AniPoisk!</h1>
+            {% if user.is_authenticated %}
+            <p>
+                We are thrilled to have you here on our site dedicated to all anime enthusiasts! Here, you'll find:
+                Top Anime - The best anime series you must watch.
+                Seasonal Releases - Discover what's new this season.
+                Diverse Genres - From fantasy to romance, we have anime for everyone.
+                Join our community and explore a world of captivating stories, vibrant characters, and stunning animation. Whether you are a long-time anime fan or just starting your journey, you'll find something special here.
+            </p>
+            {% else %}
+            <p>Sign up or log in to add anime to your favorites list, leave reviews, and share your thoughts with other users. Begin your anime adventure with us today!</p>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="{% url 'allAnime' %}" class="btn btn-outline-light">Watch now</a>
+             {% else %}
+            <a href="{% url 'loginPage' %}" class="btn btn-outline-light">Login</a>
+            <a href="{% url 'signUp' %}" class="btn btn-outline-light">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{%static './script/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%static './script/script.js' %} "></script>
+</body>
+</html>
